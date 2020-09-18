@@ -9,8 +9,13 @@ public class World : MonoBehaviour
     public GameObject player;
 
     // Distance in Relation to Player and/or Platform
-    public Vector2 maxDist = new Vector2(5.0f, 10.0f);
-    public Vector2 minDist = new Vector2(0.0f, 2.0f);
+    public Vector2  maxDist             = new Vector2(5.0f, 10.0f);
+    public Vector2  minDist             = new Vector2(0.0f, 2.0f);
+    public float    platformSpacing     = 4.0f;
+
+    // Environment Boundaries
+    public float  leftBoundaryX = -10.0f;
+    public float  rightBoundaryX = 10.0f;
 
     // Internal Resources
     private Queue<GameObject> platforms = new Queue<GameObject>();
@@ -25,7 +30,12 @@ public class World : MonoBehaviour
     private Vector2 getRandomLocationFrom(Vector2 pos)
     {
         int xDirection = Random.Range(0.0f, 1.0f) > 0.5 ? 1 : -1;
-        float x = pos.x + (xDirection * Random.Range(0.0f, this.maxDist.x - this.minDist.x));
+
+        // Constrain X within Boundaries
+        float x = Mathf.Clamp(
+            pos.x + (xDirection * Random.Range(0.0f, this.maxDist.x - this.minDist.x)),
+            leftBoundaryX, rightBoundaryX
+        );
         float y = (pos.y + this.minDist.y) + Random.Range(0.0f, this.maxDist.y - this.minDist.y);
         return new Vector2(x, y);
     }
@@ -33,7 +43,22 @@ public class World : MonoBehaviour
     // Spawns a Platform in respect to given Postition
     public void spawnPlatform(Vector2 pos)
     {
-        GameObject obj = Instantiate(platformPrefab, getRandomLocationFrom(pos), Quaternion.identity);
+        // Get Random Location for Platform
+        Vector2 platformPosition = getRandomLocationFrom(pos);
+
+        // Make sure Spacing is Accurate
+        foreach (GameObject platform in this.platforms)
+        {
+            float dist = Vector2.Distance(platformPosition, platform.transform.position);
+            if(dist < this.platformSpacing)
+            {
+                // Try a better Approach
+                spawnPlatform(platform.transform.position);
+                return;
+            }
+        }
+
+        GameObject obj = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
         obj.transform.parent = this.transform;
         this.platforms.Enqueue(obj);
     }
@@ -62,6 +87,7 @@ public class World : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Spawn Initial Platforms
         spawnPlatform(player.transform.position);
 
         // Assign Player References
@@ -71,24 +97,5 @@ public class World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && this.spaceUp)
-        {
-            spawnPlatform(player.transform.position);
-            this.spaceUp = false;
-        }
-        else if (!Input.GetKeyDown(KeyCode.Space) && !this.spaceUp)
-        {
-            this.spaceUp = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D) && this.keyD)
-        {
-            Destroy(this.platforms.Dequeue());
-            this.keyD = false;
-        }
-        else if (!Input.GetKeyDown(KeyCode.D) && !this.keyD)
-        {
-            this.keyD = true;
-        }
     }
 }
