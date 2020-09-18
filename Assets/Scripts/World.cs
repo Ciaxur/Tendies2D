@@ -17,6 +17,9 @@ public class World : MonoBehaviour
     private bool spaceUp = true;        // State of Space Key
     private bool keyD = true;           // State of D Key
 
+    // Internal Player References
+    private Rigidbody2D playerRbody2D;
+
 
     // Random Location from given Position
     private Vector2 getRandomLocationFrom(Vector2 pos)
@@ -28,17 +31,41 @@ public class World : MonoBehaviour
     }
 
     // Spawns a Platform in respect to given Postition
-    private void spawnPlatform(Vector2 pos)
+    public void spawnPlatform(Vector2 pos)
     {
         GameObject obj = Instantiate(platformPrefab, getRandomLocationFrom(pos), Quaternion.identity);
         obj.transform.parent = this.transform;
         this.platforms.Enqueue(obj);
     }
 
+    // Helper Function: Sets Platform Collision
+    private void setPlatformCollision(bool state) 
+    {
+        Collider2D playerCollider = this.playerRbody2D.GetComponent<Collider2D>();
+        foreach (GameObject platform in this.platforms)
+            Physics2D.IgnoreCollision(platform.GetComponent<Collider2D>(), playerCollider, !state);
+    }
+
+
+    // Physics Update
+    void FixedUpdate() 
+    {
+        // Platform Collision based on Player Movement
+        if (this.playerRbody2D.velocity.y < 0) {
+            this.setPlatformCollision(true);
+        } 
+        else if (this.playerRbody2D.velocity.y > 0) {
+            this.setPlatformCollision(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         spawnPlatform(player.transform.position);
+
+        // Assign Player References
+        this.playerRbody2D = this.player.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

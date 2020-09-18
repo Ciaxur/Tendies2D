@@ -11,21 +11,25 @@ public class Controller : MonoBehaviour
 
     // Internal References
     private Rigidbody2D rbody2D;
+    private BoxCollider2D boxCollider2D;
     private bool canJump = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        rbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+        // Store Attached Components
+        this.rbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+        this.boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Reset Jump Ability if Object is a Platform
-        if (collision.gameObject.tag == "Platform")
-            canJump = true;
+        // Reset Jump Ability if Object is a Platform or the Floor
+        if (collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Floor")
+        {
+            this.canJump = true;
+        }
     }
-
 
     // Physics Update
     void FixedUpdate()
@@ -35,7 +39,6 @@ public class Controller : MonoBehaviour
             rbody2D.velocity = new Vector2(maxVelocity, rbody2D.velocity.y);
         if (rbody2D.velocity.x < -maxVelocity)
             rbody2D.velocity = new Vector2(-maxVelocity, rbody2D.velocity.y);
-
     }
 
 
@@ -55,7 +58,6 @@ public class Controller : MonoBehaviour
         // Jumping
         if(Input.GetKey(KeyCode.UpArrow) && canJump)
         {
-            Debug.Log("Jump!");
             rbody2D.AddForce(new Vector2(0.0f, this.jumpMultiplier * 1000.0f));
             canJump = false;
         }
