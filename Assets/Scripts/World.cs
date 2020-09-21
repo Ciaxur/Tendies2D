@@ -7,6 +7,20 @@ public class World : MonoBehaviour
     // External Reference Resources
     public GameObject player;
     public PlatformHandler platformHandler;
+    public BubbleEmitter bubbleParticles;
+    public float bubbleSpawnRate = 0.05f;           // Defaulted to 5%
+    public GameObject mainCamera;
+    public float playerDistTillDeath = -5.0f;       // Distance from Camera (Off-Screen)
+
+    // Water Background
+    public SpriteRenderer waterBackground;
+    public Color startingColor = new Color(22.0f, 22.0f, 22.0f, 255.0f);
+    public Color finalColor = new Color(255.0f, 255.0f, 255.0f, 255.0f);
+    public float colorChangeDt = 0.1f;
+
+    // Floor & Resources
+    public GameObject environmentFloor;
+    private float score;
 
     // Environment Boundaries
     public float  leftBoundaryX = -10.0f;
@@ -37,6 +51,9 @@ public class World : MonoBehaviour
         return new Vector2(x, y);
     }
 
+    public GameObject getPlayer() {
+        return this.player;
+    }
 
     // Physics Update
     void FixedUpdate() {
@@ -61,11 +78,32 @@ public class World : MonoBehaviour
         if (distLast.y < dyLookAhead)
             platformHandler.runPlatformSpawns();
 
+        // Calculate Score: Only Store the Highest
+        Vector2 distFloor = player.transform.position - environmentFloor.transform.position;
+        score = distFloor.y > score ? distFloor.y : score;
+
+        // Change Background Color as Player Proceeds
+        Color waterClr = waterBackground.color;
+        waterBackground.color = Color.Lerp(startingColor, finalColor, colorChangeDt * distFloor.y);
+
+        // Check if Player is Off-Screen
+        // TODO: End Game
+        float playerToCameraDist = player.transform.position.y - mainCamera.transform.position.y;
+        if (playerToCameraDist <= playerDistTillDeath) {
+            Debug.Log("DEATH!");
+        }
+
+        // Randomly Spawn Bubbles
+        if (Random.Range(0.0f, 1.0f) < bubbleSpawnRate)
+            bubbleParticles.spawn();
+
         // DEBUG: Information
         debugMenu.GetComponent<TMPro.TextMeshProUGUI>().text = 
             $"Last Platform: {distFirst.y:N2}\n" +
             $"First Platform: {distLast.y:N2}\n" +
-            $"Total Platforms: {platformHandler.getTotalPlatforms()}";
+            $"Total Platforms: {platformHandler.getTotalPlatforms()}\n" +
+            $"Score: {score:N0}\n" +
+            $"dCamera:Player {playerToCameraDist:N2}\n";
     }
 
     // Start is called before the first frame update
@@ -76,5 +114,11 @@ public class World : MonoBehaviour
 
         // Assign Player References
         this.playerRbody2D = this.player.GetComponent<Rigidbody2D>();
+
+        // Starting Score
+        score = 0.0f;
+
+        // Assign Background Color
+        waterBackground.color = startingColor;
     }
 }

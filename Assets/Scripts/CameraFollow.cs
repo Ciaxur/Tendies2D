@@ -20,10 +20,14 @@ public class CameraFollow : MonoBehaviour
         );
         
         // Add the smoothness to the Camera
-        transform.position = Vector3.Lerp(
+        Vector3 newPosition = Vector3.Lerp(
             transform.position,
             desiredPosition,
             smoothSpeed * Time.fixedDeltaTime
         );
+
+        // Only Move Upwards
+        transform.position = newPosition.y > transform.position.y 
+            ? newPosition : transform.position;
     }
 }
