@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     private Rigidbody2D rbody2D;
     private BoxCollider2D boxCollider2D;
     private bool canJump = false;
+    private int xDirection = 1;     // Initiated as Right
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,16 @@ public class Controller : MonoBehaviour
             rbody2D.velocity = new Vector2(maxVelocity, rbody2D.velocity.y);
         if (rbody2D.velocity.x < -maxVelocity)
             rbody2D.velocity = new Vector2(-maxVelocity, rbody2D.velocity.y);
+        
+        // Flip Character Depending on Direction
+        if (xDirection == 1 && rbody2D.velocity.x < -0.5f) {       // Going Left
+            this.transform.localScale *= new Vector2(-1.0f, 1.0f);
+            xDirection = -1;
+        }
+        else if (xDirection == -1 && rbody2D.velocity.x > 0.5f) {       // Going Right
+            this.transform.localScale *= new Vector2(-1.0f, 1.0f);
+            xDirection = 1;
+        }
     }
 
 

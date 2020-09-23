@@ -103,7 +103,8 @@ public class World : MonoBehaviour
             $"First Platform: {distLast.y:N2}\n" +
             $"Total Platforms: {platformHandler.getTotalPlatforms()}\n" +
             $"Score: {score:N0}\n" +
-            $"dCamera:Player {playerToCameraDist:N2}\n";
+            $"dCamera:Player {playerToCameraDist:N2}\n" +
+            $"Velocity.x:Player {playerRbody2D.velocity.x:N2}\n";
     }
 
     // Start is called before the first frame update
