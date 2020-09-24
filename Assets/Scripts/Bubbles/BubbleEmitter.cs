@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BubbleEmitter : MonoBehaviour
-{
+public class BubbleEmitter : MonoBehaviour {
     // Various Types of Bubbles
     public GameObject bubbleObj;
     public Sprite bubble1;
@@ -28,23 +27,23 @@ public class BubbleEmitter : MonoBehaviour
     public void spawn() {
         // Create a Bubble
         GameObject bubble = Instantiate(
-            bubbleObj, 
+            bubbleObj,
             new Vector3(
-                relativeTo.transform.position.x - Random.Range(leftBoundary, rightBoundary), 
+                relativeTo.transform.position.x - Random.Range(leftBoundary, rightBoundary),
                 relativeTo.transform.position.y - Random.Range(leftBoundary, rightBoundary)
             ),
             Quaternion.identity);
 
         // Assign Bubble to a Parent
         bubble.transform.parent = transform;
-        
+
         // Obtain Properties
         Rigidbody2D rBody2D = bubble.GetComponent<Rigidbody2D>();
         SpriteRenderer spriteRenderer = bubble.GetComponent<SpriteRenderer>();
 
         // Add Random Speed up & Random Sprite
         rBody2D.AddForce(new Vector2(0.0f, Random.Range(minSpeed, maxSpeed)));
-        spriteRenderer.sprite = bubbles[ Mathf.FloorToInt(Random.Range(0.0f, bubbles.Count)) ];
+        spriteRenderer.sprite = bubbles[Mathf.FloorToInt(Random.Range(0.0f, bubbles.Count))];
 
         // Random Alpha
         Color clr = spriteRenderer.color;

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble : MonoBehaviour
-{
+public class Bubble : MonoBehaviour {
     // External References
     public float distToDespawn = 100.0f;
 
     // Internal References
     World world;        // Reference to the World
-
 
     void Start() {
         world = transform.parent.GetComponent<World>();

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : MonoBehaviour
-{
+public class World : MonoBehaviour {
     // External Reference Resources
     public GameObject player;
     public PlatformHandler platformHandler;
@@ -23,12 +22,12 @@ public class World : MonoBehaviour
     private float score;
 
     // Environment Boundaries
-    public float  leftBoundaryX = -10.0f;
-    public float  rightBoundaryX = 10.0f;
+    public float leftBoundaryX = -10.0f;
+    public float rightBoundaryX = 10.0f;
 
     // Infinite Spawning Resources
-    public float  dyOffScreen = -5.0f;      // Distance Y Relative to Player that is Offscreen
-    public float  dyLookAhead = 20.0f;      // Distance Y Relative to Player to look Ahead to Pre-Spawn/Handle
+    public float dyOffScreen = -5.0f;      // Distance Y Relative to Player that is Offscreen
+    public float dyLookAhead = 20.0f;      // Distance Y Relative to Player to look Ahead to Pre-Spawn/Handle
 
     // Internal Player References
     private Rigidbody2D playerRbody2D;
@@ -60,8 +59,7 @@ public class World : MonoBehaviour
         // Platform Collision based on Player Movement
         if (this.playerRbody2D.velocity.y < 0) {
             platformHandler.setPlatformCollision(true, this.playerRbody2D.GetComponent<Collider2D>());
-        } 
-        else if (this.playerRbody2D.velocity.y > 0) {
+        } else if (this.playerRbody2D.velocity.y > 0) {
             platformHandler.setPlatformCollision(false, this.playerRbody2D.GetComponent<Collider2D>());
         }
     }
@@ -98,7 +96,7 @@ public class World : MonoBehaviour
             bubbleParticles.spawn();
 
         // DEBUG: Information
-        debugMenu.GetComponent<TMPro.TextMeshProUGUI>().text = 
+        debugMenu.GetComponent<TMPro.TextMeshProUGUI>().text =
             $"Last Platform: {distFirst.y:N2}\n" +
             $"First Platform: {distLast.y:N2}\n" +
             $"Total Platforms: {platformHandler.getTotalPlatforms()}\n" +
