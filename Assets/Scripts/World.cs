@@ -34,6 +34,7 @@ public class World : MonoBehaviour {
     public GameObject debugMenu;
 
 
+
     /**
      * Random Location from given Position
      * @param pos Relative Position
@@ -54,16 +55,7 @@ public class World : MonoBehaviour {
         return this.player;
     }
 
-    // Physics Update
-    void FixedUpdate() {
-        // Platform Collision based on Player Movement
-        if (this.playerRbody2D.velocity.y < 0) {
-            platformHandler.setPlatformCollision(true, this.playerRbody2D.GetComponent<Collider2D>());
-        } else if (this.playerRbody2D.velocity.y > 0) {
-            platformHandler.setPlatformCollision(false, this.playerRbody2D.GetComponent<Collider2D>());
-        }
-    }
-
+    
     // Last Minute Checks
     void LateUpdate() {
         // Despwan Off-Screen Objects

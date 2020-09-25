@@ -20,21 +20,6 @@ public class PlatformHandler : MonoBehaviour {
     private GameObject lastPlaform;                                         // Keeps track of the Last Spawned Platform
 
 
-
-    /**
-     * Helper Function
-     *  Sets Platform Collision to a State relative to the
-     *  collider given.
-     *
-     * @param state - The State to set Collision to
-     * @param collider - The Collider to Set Collision State onto
-     */
-    public void setPlatformCollision(bool state, Collider2D collider) {
-        Collider2D playerCollider = collider;
-        foreach (GameObject platform in this.platforms)
-            Physics2D.IgnoreCollision(platform.GetComponent<Collider2D>(), playerCollider, !state);
-    }
-
     /** 
      * Spawns a Platform in respect to given Postition
      * @param pos Relative Position
