@@ -19,24 +19,31 @@ public class PlatformHandler : MonoBehaviour {
     private Queue<GameObject> latestPlatforms = new Queue<GameObject>();    // Keeps track of Last N-Plaforms
     private GameObject lastPlaform;                                         // Keeps track of the Last Spawned Platform
 
+    private int spawnIterationCount = 0;        // DEBUG: Make sure not to go over-board
+
 
     /** 
      * Spawns a Platform in respect to given Postition
      * @param pos Relative Position
      */
     private void spawnPlatform(Vector2 pos) {
+        spawnIterationCount++;
         // Get Random Location for Platform
         Vector2 platformPosition = world.getRandomLocationFrom(pos);
 
-        // Make sure Spacing is Accurate
-        foreach (GameObject platform in this.platforms) {
-            float dist = Vector2.Distance(platformPosition, platform.transform.position);
-            if (dist < this.platformSpacing) {
-                // Try a better Approach
-                spawnPlatform(platform.transform.position);
-                return;
+        if (spawnIterationCount < 100) {
+            // Make sure Spacing is Accurate
+            foreach (GameObject platform in this.platforms) {
+                float dist = Vector2.Distance(platformPosition, platform.transform.position);
+                if (dist < this.platformSpacing) {
+                    // Try a better Approach
+                    spawnPlatform(platform.transform.position);
+                    return;
+                }
             }
         }
+        Debug.Log("Spawn Iteration = " + spawnIterationCount);
+
 
         GameObject obj = Instantiate(platformPrefab, platformPosition, Quaternion.identity);
         obj.transform.parent = this.transform;
@@ -49,6 +56,9 @@ public class PlatformHandler : MonoBehaviour {
 
         // Keep track of the Last Platform
         lastPlaform = obj;
+
+        // Reset the Iteration Count
+        spawnIterationCount = 0;
     }
 
     /** Runs Platform Spawning Algorithm */
