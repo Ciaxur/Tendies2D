@@ -713,6 +713,7 @@ GameObject:
   - component: {fileID: 1234536867}
   - component: {fileID: 1234536868}
   - component: {fileID: 1234536869}
+  - component: {fileID: 1234536870}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -753,6 +754,7 @@ MonoBehaviour:
   bubbleSpawnRate: 0.00125
   mainCamera: {fileID: 1774904041}
   playerDistTillDeath: -5
+  debugMenu: {fileID: 445792549}
   waterBackground: {fileID: 47218616}
   startingColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   finalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -762,7 +764,7 @@ MonoBehaviour:
   rightBoundaryX: 7.4
   dyOffScreen: -20
   dyLookAhead: 20
-  debugMenu: {fileID: 445792549}
+  envSpawnRate: 0.0125
 --- !u!114 &1234536868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,6 +808,26 @@ MonoBehaviour:
   maxSpeed: 250
   leftBoundary: -10
   rightBoundary: 10
+--- !u!114 &1234536870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234536865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d9ed602ffcf214c8c411b6c16155b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relativeObject: {fileID: 629514743}
+  fishPrefab: {fileID: 185903637282309339, guid: e7976f33f02610144a2454f8e6a40ebb,
+    type: 3}
+  x_SpawnOffset: 20.3
+  y_SpawnOffset: 15.4
+  despawnRange: 25
+  minVelocity: 50
+  maxVelocity: 200
 --- !u!1 &1297417802
 GameObject:
   m_ObjectHideFlags: 0

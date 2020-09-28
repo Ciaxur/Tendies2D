@@ -10,6 +10,7 @@ public class World : MonoBehaviour {
     public float bubbleSpawnRate = 0.05f;           // Defaulted to 5%
     public GameObject mainCamera;
     public float playerDistTillDeath = -5.0f;       // Distance from Camera (Off-Screen)
+    public GameObject debugMenu;
 
     // Water Background
     public SpriteRenderer waterBackground;
@@ -29,9 +30,12 @@ public class World : MonoBehaviour {
     public float dyOffScreen = -5.0f;      // Distance Y Relative to Player that is Offscreen
     public float dyLookAhead = 20.0f;      // Distance Y Relative to Player to look Ahead to Pre-Spawn/Handle
 
-    // Internal Player References
+    // Internal References
     private Rigidbody2D playerRbody2D;
-    public GameObject debugMenu;
+    private EnvironmentSpawner envSpawner;
+
+    // Environment Spawner Settings
+    [Range(0.0f, 1.0f)] public float envSpawnRate       = 0.025f;
 
 
 
@@ -55,6 +59,12 @@ public class World : MonoBehaviour {
         return this.player;
     }
 
+    // Physics Fixed Updates
+    void FixedUpdate() {
+        if (Random.Range(0.0f, 1.0f) < envSpawnRate) {
+            envSpawner.spawn(player.transform.position);
+        }
+    }
     
     // Last Minute Checks
     void LateUpdate() {
@@ -97,14 +107,19 @@ public class World : MonoBehaviour {
             $"Velocity.x:Player {playerRbody2D.velocity.x:N2}\n";
     }
 
+    void Awake() {
+        // Assign References
+        playerRbody2D = player.GetComponent<Rigidbody2D>();
+        envSpawner = GetComponent<EnvironmentSpawner>();
+    }
+
     // Start is called before the first frame update
     void Start() {
         // Spawn Initial 10 Platforms
         for (int i = 0; i < 10; i++)
             platformHandler.runPlatformSpawns();
 
-        // Assign Player References
-        this.playerRbody2D = this.player.GetComponent<Rigidbody2D>();
+        
 
         // Starting Score
         score = 0.0f;
