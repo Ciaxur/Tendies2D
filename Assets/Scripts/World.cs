@@ -130,8 +130,6 @@ public class World : MonoBehaviour {
         for (int i = 0; i < 10; i++)
             platformHandler.runPlatformSpawns();
 
-        
-
         // Starting Score
         score = 0.0f;
 
