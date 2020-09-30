@@ -12,6 +12,11 @@ public class World : MonoBehaviour {
     public float playerDistTillDeath = -5.0f;       // Distance from Camera (Off-Screen)
     public GameObject debugMenu;
 
+    // External Settings
+    public float distLevel0 = 0.0f;           // Depth Levels
+    public float distLevel1 = 100.0f;
+    public float distLevel2 = 800.0f;
+
     // Water Background
     public SpriteRenderer waterBackground;
     public Color startingColor = new Color(22.0f, 22.0f, 22.0f, 255.0f);
@@ -33,6 +38,7 @@ public class World : MonoBehaviour {
     // Internal References
     private Rigidbody2D playerRbody2D;
     private EnvironmentSpawner envSpawner;
+    private Vector2 distFromFloor = new Vector2(0.0f, 0.0f);     // Keep track of Distance from Floor
 
     // Environment Spawner Settings
     [Range(0.0f, 1.0f)] public float envSpawnRate       = 0.025f;
@@ -53,6 +59,11 @@ public class World : MonoBehaviour {
         );
         float y = (pos.y + platformHandler.minDist.y) + Random.Range(0.0f, platformHandler.maxDist.y - platformHandler.minDist.y);
         return new Vector2(x, y);
+    }
+
+    // Returns the Distance from Floor
+    public Vector2 getDistFromFloor() {
+        return distFromFloor;
     }
 
     public GameObject getPlayer() {
@@ -79,12 +90,12 @@ public class World : MonoBehaviour {
             platformHandler.runPlatformSpawns();
 
         // Calculate Score: Only Store the Highest
-        Vector2 distFloor = player.transform.position - environmentFloor.transform.position;
-        score = distFloor.y > score ? distFloor.y : score;
+        distFromFloor = player.transform.position - environmentFloor.transform.position;
+        score = distFromFloor.y > score ? distFromFloor.y : score;
 
         // Change Background Color as Player Proceeds
         Color waterClr = waterBackground.color;
-        waterBackground.color = Color.Lerp(startingColor, finalColor, colorChangeDt * distFloor.y);
+        waterBackground.color = Color.Lerp(startingColor, finalColor, colorChangeDt * distFromFloor.y);
 
         // Check if Player is Off-Screen
         // TODO: End Game

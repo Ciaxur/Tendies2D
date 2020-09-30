@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlatformHandler : MonoBehaviour {
     // External Reference Resources
-    public GameObject platformPrefab;
+    public GameObject platform0;        // Low Level    (Level Further away from Floor)
+    public GameObject platform1;        // Medium Level
+    public GameObject platform2;        // High Level
     public GameObject player;
     public World world;
 
@@ -20,7 +22,6 @@ public class PlatformHandler : MonoBehaviour {
     private GameObject lastPlaform;                                         // Keeps track of the Last Spawned Platform
 
     private int spawnIterationCount = 0;        // DEBUG: Make sure not to go over-board
-
 
     /** 
      * Spawns a Platform in respect to given Postition
@@ -43,6 +44,16 @@ public class PlatformHandler : MonoBehaviour {
             }
         }
         Debug.Log("Spawn Iteration = " + spawnIterationCount);
+
+        // Depending on the Distance from Floor Pick a Platform Level
+        Vector2 floorDist = world.getDistFromFloor();
+        GameObject platformPrefab = platform0;          // Level 0
+
+        if ( floorDist.y > world.distLevel1 ) {         // Level 1
+            platformPrefab = platform1;
+        } else if ( floorDist.y > world.distLevel2 ) {  // Level 2
+            platformPrefab = platform2;
+        }
 
 
         GameObject obj = Instantiate(platformPrefab, platformPosition, Quaternion.identity);

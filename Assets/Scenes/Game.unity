@@ -170,7 +170,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,8 +188,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 991513603
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f6dfcdab3aceb964884889a885de30cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -392,9 +392,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2115319551
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ab8668987fd9b634d818be05c83ed59f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b97687e25a11e3d42bf6c02169a49170, type: 3}
   m_Color: {r: 0.8, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,10 +413,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629514743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: -5.61, z: 0}
-  m_LocalScale: {x: 0.5760057, y: 0.5760057, z: 0.5760057}
-  m_Children:
-  - {fileID: 1149715533}
+  m_LocalPosition: {x: 0.38, y: -5.61, z: 0}
+  m_LocalScale: {x: 0.27371067, y: 0.27371067, z: 0.27371067}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -433,18 +432,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.17415178, y: -0.67029846}
+  m_Offset: {x: 0.40297413, y: -0.7973}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.87, y: 2.8}
+    oldSize: {x: 6.4, y: 6.4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1984007, y: 1.4589674}
+  m_Size: {x: 2.1877594, y: 4.4501886}
   m_EdgeRadius: 0
 --- !u!50 &629514747
 Rigidbody2D:
@@ -564,8 +563,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2115319551
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b0c266d9fc6bc84fbcc62cc49265aef, type: 3}
   m_Color: {r: 0.92941177, g: 0.68235296, b: 0.33333334, a: 1}
@@ -719,78 +718,6 @@ Transform:
   m_Father: {fileID: 1234536866}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1149715532
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1149715533}
-  - component: {fileID: 1149715534}
-  m_Layer: 0
-  m_Name: Glow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1149715533
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149715532}
-  m_LocalRotation: {x: -0, y: -0, z: 0.003758756, w: 0.99999297}
-  m_LocalPosition: {x: -0.05208282, y: -0.19096975, z: 0}
-  m_LocalScale: {x: 1.736094, y: 1.736094, z: 1.736094}
-  m_Children: []
-  m_Father: {fileID: 629514745}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1149715534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149715532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.682
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
-  m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.7885922
-  m_PointLightOuterRadius: 2.9087296
-  m_PointLightDistance: 3
-  m_PointLightQuality: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1191353481
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,10 +801,13 @@ MonoBehaviour:
   player: {fileID: 629514743}
   platformHandler: {fileID: 1234536868}
   bubbleParticles: {fileID: 1234536869}
-  bubbleSpawnRate: 0.00125
+  bubbleSpawnRate: 0.1
   mainCamera: {fileID: 1774904041}
   playerDistTillDeath: -5
   debugMenu: {fileID: 445792549}
+  distLevel0: 0
+  distLevel1: 100
+  distLevel2: 800
   waterBackground: {fileID: 47218616}
   startingColor: {r: 0.101960786, g: 0.42745098, b: 0.6313726, a: 1}
   finalColor: {r: 0.5647059, g: 0.7921569, b: 0.9372549, a: 1}
@@ -900,7 +830,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513096ec57cc5a740a6ecbcc6facbb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefab: {fileID: 2402892734106160610, guid: 8e94785bb0ccdcd45ba362b5edac9dfe,
+  platform0: {fileID: 2402892734106160610, guid: 8e94785bb0ccdcd45ba362b5edac9dfe,
+    type: 3}
+  platform1: {fileID: 8533415832451993260, guid: 68a4bb33524f7164696d033889637698,
+    type: 3}
+  platform2: {fileID: 5131432325514880316, guid: a114b29e2c3226240bceb45d667725d6,
     type: 3}
   player: {fileID: 629514743}
   world: {fileID: 1234536867}
@@ -1119,7 +1053,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2115319551
   m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!4 &1310198186 stripped
