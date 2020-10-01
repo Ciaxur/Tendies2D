@@ -5,11 +5,28 @@ using UnityEngine;
 public class CharacterStatus : MonoBehaviour
 {
     // Public Settings
-    public int health = 10;     // Initial Character Health
+    public int maxHealth = 10;
     
+    // Public State
+    public int health;          // Initial Character Health
+    
+
+    void Start() {
+        health = maxHealth;
+    }
 
     // Inflicts Damage on Character
     public void inflictDamage(int val) {
         health -= val;
+    }
+
+    // Set total Health
+    public void setHealth(int newHealth) {
+        this.health = Mathf.Clamp(newHealth, 0, maxHealth);
+    }
+
+    // Increases Health by Value (Contrain to Max Health)
+    public void increaseHealth(int val) {
+        this.health += Mathf.Clamp(val, 0, maxHealth);
     }
 }

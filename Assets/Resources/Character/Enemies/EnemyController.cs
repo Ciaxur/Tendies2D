@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     // Internal State
     float   lastShotTime = 0f;          // Last Time when Shot
     
+    // TODO: Die when Health reaches 0
+    public void kill() {}
+    
     
     void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
