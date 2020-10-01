@@ -25,10 +25,6 @@ public class Controller : MonoBehaviour {
     private bool    fallCheck       = false;    // If Player is on Ground
 
 
-    // TODO: Die when Health Reaches 0
-    public void kill() {}
-
-
     void Awake() {
         rbody2D = GetComponent<Rigidbody2D>();
         charLayer = LayerMask.NameToLayer("Character");

@@ -20,10 +20,18 @@ public class EntityDeath : MonoBehaviour {
 
     /** Keep Track of Changes and Life */
     void LateUpdate() {
-        // Check if far enough to Despawn
-        float distFromRel = Vector2.Distance(transform.position, refObj.transform.position);
-        if (distFromRel >= distToDespawn) {
-            Destroy(this.gameObject);
+        // Make sure Ref is still there
+        if (!refObj) {
+            Destroy(gameObject);
         }
+
+        else {
+            // Check if far enough to Despawn
+            float distFromRel = Vector2.Distance(transform.position, refObj.transform.position);
+            if (distFromRel >= distToDespawn) {
+                Destroy(this.gameObject);
+            }
+        }
+        
     }
 }

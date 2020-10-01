@@ -10,10 +10,24 @@ public class CharacterStatus : MonoBehaviour
     // Public State
     public int health;          // Initial Character Health
     
+    
+    void LateUpdate() {
+        // Check if Player Died
+        if (health <= 0) {
+            kill();
+        }
+    }
 
     void Start() {
         health = maxHealth;
     }
+
+
+    // TODO: Play Death Sequence?
+    public void kill() {
+        Destroy(gameObject);
+    }
+    
 
     // Inflicts Damage on Character
     public void inflictDamage(int val) {

@@ -102,6 +102,8 @@ public class World : MonoBehaviour {
         float playerToCameraDist = player.transform.position.y - mainCamera.transform.position.y;
         if (playerToCameraDist <= playerDistTillDeath) {
             Debug.Log("DEATH!");
+            player.GetComponent<CharacterStatus>().kill();
+            Debug.Break();
         }
 
         // Randomly Spawn Bubbles

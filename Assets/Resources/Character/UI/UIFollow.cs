@@ -15,12 +15,19 @@ public class UIFollow : MonoBehaviour
     }
 
     void LateUpdate() {
-        Vector2 desiredPos = Vector2.Lerp(
-            transform.position, 
-            followRef.transform.position, 
-            followSmoothness
-        );
+        // Check if Ref is still there
+        if (!followRef) {
+            Destroy(gameObject);
+        }
 
-        transform.position = desiredPos;
+        else {
+            Vector2 desiredPos = Vector2.Lerp(
+                transform.position, 
+                followRef.transform.position, 
+                followSmoothness
+            );
+
+            transform.position = desiredPos;
+        }
     }
 }
