@@ -12,7 +12,6 @@ public class Controller : MonoBehaviour {
     public int   charLayer;
     public int   floorLayer;
 
-
     // Internal References
     private Rigidbody2D rbody2D;
 
@@ -40,9 +39,10 @@ public class Controller : MonoBehaviour {
         Vector2 playerForce = new Vector2(inputMoveX, 0.0f);
         if (inputJump && pVel.y == 0) {
             playerForce.y = jumpForceMultiplier * 1000.0f;
-            inputJump = false;
         }
         rbody2D.AddForce(playerForce);
+
+        inputJump = false;
 
         // Limit Velocity
         pVel.x = Mathf.Clamp(pVel.x, -maxVelocity, maxVelocity);
