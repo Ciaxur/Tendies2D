@@ -10,10 +10,12 @@ public class PlatformHandler : MonoBehaviour {
     public GameObject player;
     public World world;
 
+    // External Settings
     // Distance in Relation to Player and/or Platform
     public Vector2 maxDist = new Vector2(5.0f, 10.0f);
     public Vector2 minDist = new Vector2(0.0f, 2.0f);
     public float platformSpacing = 4.0f;
+    [Range(0f, 1f)] public float enemySpawnRate = 0.2f;
 
     // Internal Platform Resources
     private Queue<GameObject> platforms = new Queue<GameObject>();
@@ -43,7 +45,7 @@ public class PlatformHandler : MonoBehaviour {
                 }
             }
         }
-        Debug.Log("Spawn Iteration = " + spawnIterationCount);
+        // Debug.Log("Spawn Iteration = " + spawnIterationCount);
 
         // Depending on the Distance from Floor Pick a Platform Level
         Vector2 floorDist = world.getDistFromFloor();
@@ -70,6 +72,11 @@ public class PlatformHandler : MonoBehaviour {
 
         // Reset the Iteration Count
         spawnIterationCount = 0;
+
+        // Spawn Enemey
+        if ( Random.Range( 0f, 1f ) < enemySpawnRate ) {
+            obj.GetComponent<PlatformSpawner>().spawn(PlatformSpawner.SpawnType.ENEMY);
+        }
     }
 
     /** Runs Platform Spawning Algorithm */

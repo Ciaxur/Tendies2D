@@ -7,30 +7,21 @@ public class EntityDeath : MonoBehaviour {
     public float distToDespawn = 100.0f;
 
     // Internal References
-    private Transform player;
-    World world;        // Reference to the World
+    private GameObject refObj;
 
 
-    public void setPlayer(Transform player) {
-        this.player = player;
+    public void setRefObject(GameObject refObj) {
+        this.refObj = refObj;
     }
 
     void Start() {
-        if (transform.parent) {
-            world = transform.parent.GetComponent<World>();
-        }
+        refObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     /** Keep Track of Changes and Life */
     void LateUpdate() {
-        // Get Player Reference
-        Transform pos = player;
-        if (world) {
-            pos = world.getPlayer().transform;
-        }
-        
         // Check if far enough to Despawn
-        float distFromRel = transform.position.y - pos.position.y;
+        float distFromRel = Vector2.Distance(transform.position, refObj.transform.position);
         if (distFromRel >= distToDespawn) {
             Destroy(this.gameObject);
         }

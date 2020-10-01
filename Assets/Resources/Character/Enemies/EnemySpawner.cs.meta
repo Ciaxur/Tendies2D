@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5b2833d1869a2b242aaf149c2149833a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - skullyPrefab: {fileID: 1622701555686117570, guid: ee5b4c95d7b999642a244d0b799ba366,
+      type: 3}
+  - slimyPrefab: {fileID: 9206317582505198415, guid: aa319fb5f8123d5468a2cfe7e25e666d,
+      type: 3}
+  - starPrefab: {fileID: 4861027249623552794, guid: b8f951eebd75a3f4486405102f3057a2,
+      type: 3}
+  - zombiPrefab: {fileID: 5510543918234381898, guid: dd3de524e083d2d498bc96d083b475e7,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -47,8 +47,8 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.61
   m_Color: {r: 1, g: 0.8578487, b: 0.5330188, a: 1}
-  m_Intensity: 1
-  m_LightVolumeOpacity: 0.111
+  m_Intensity: 0.25
+  m_LightVolumeOpacity: 0.3
   m_ApplyToSortingLayers: 01c9ea81
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5128817
-  m_PointLightOuterRadius: 3.5133836
+  m_PointLightOuterRadius: 5
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 2402892734106160608}
   - component: {fileID: 4353018833518247568}
   - component: {fileID: 1942522031}
+  - component: {fileID: 121144157}
   m_Layer: 8
   m_Name: Platform_Molten
   m_TagString: Platform
@@ -226,5 +227,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 283271362}
-  enemy: {fileID: 0}
   powerup: {fileID: 0}
+  enemySpawner: {fileID: 121144157}
+--- !u!114 &121144157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402892734106160610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2833d1869a2b242aaf149c2149833a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skullyPrefab: {fileID: 1622701555686117570, guid: ee5b4c95d7b999642a244d0b799ba366,
+    type: 3}
+  slimyPrefab: {fileID: 9206317582505198415, guid: aa319fb5f8123d5468a2cfe7e25e666d,
+    type: 3}
+  starPrefab: {fileID: 4861027249623552794, guid: b8f951eebd75a3f4486405102f3057a2,
+    type: 3}
+  zombiPrefab: {fileID: 5510543918234381898, guid: dd3de524e083d2d498bc96d083b475e7,
+    type: 3}

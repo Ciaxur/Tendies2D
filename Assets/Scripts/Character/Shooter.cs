@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     // External References
+    public GameObject firePoint;
     public GameObject bullet;
     public float bulletSpeed = 10f;
 
@@ -24,11 +25,14 @@ public class Shooter : MonoBehaviour
             Vector2 lookDirection = mousePos - rb.position;
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            GameObject obj = Instantiate(bullet, rb.position, Quaternion.Euler(0f, 0f, angle));
-            obj.GetComponent<EntityDeath>().setPlayer(transform);
+            GameObject obj = Instantiate(bullet, firePoint.transform.position, Quaternion.Euler(0f, 0f, angle));
+            obj.GetComponent<EntityDeath>().setRefObject(gameObject);
 
             Rigidbody2D bulletRb = obj.GetComponent<Rigidbody2D>();
             bulletRb.AddForce(lookDirection.normalized * bulletSpeed, ForceMode2D.Impulse);
+
+            // Ignore Shooter of Bullet
+            Physics2D.IgnoreCollision(bulletRb.GetComponent<Collider2D>(), rb.GetComponent<Collider2D>());
             
             fireClicked = false;
         }
