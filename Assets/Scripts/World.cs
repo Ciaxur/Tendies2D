@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class World : MonoBehaviour {
@@ -12,6 +13,8 @@ public class World : MonoBehaviour {
     public float playerDistTillDeath = -5.0f;       // Distance from Camera (Off-Screen)
     public GameObject debugMenu;
     public SceneTransitions sceneTransition;
+    public Text scoreUI;
+    public Text gameOverScore;
 
     // External Settings
     public float distLevel0 = 0.0f;           // Depth Levels
@@ -72,6 +75,12 @@ public class World : MonoBehaviour {
         return this.player;
     }
 
+
+    // Adds Score
+    public void addScore(float val) {
+        this.score += val;
+    }
+
     // Physics Fixed Updates
     void FixedUpdate() {
         if (Random.Range(0.0f, 1.0f) < envSpawnRate) {
@@ -115,6 +124,9 @@ public class World : MonoBehaviour {
             bubbleParticles.spawn();
 
         // DEBUG: Information
+        scoreUI.text = $"Score: {score:N0}";
+        gameOverScore.text = $"Score: {score:N0}";
+        
         debugMenu.GetComponent<TMPro.TextMeshProUGUI>().text =
             $"Last Platform: {distFirst.y:N2}\n" +
             $"First Platform: {distLast.y:N2}\n" +

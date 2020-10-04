@@ -6,9 +6,10 @@ public class CharacterStatus : MonoBehaviour
 {
     // Public Settings
     public int maxHealth = 10;
+    public int scorePoints = 10;    // Points on Death
     
     // Public State
-    public int health;          // Initial Character Health
+    public int health;              // Initial Character Health
     
     
     void LateUpdate() {
@@ -25,6 +26,11 @@ public class CharacterStatus : MonoBehaviour
 
     // TODO: Play Death Sequence?
     public void kill() {
+        // Find the World & Increase Score
+        World g = FindObjectOfType<World>();
+        g.addScore(scorePoints);
+        
+        // Clean up
         Destroy(gameObject);
     }
     
