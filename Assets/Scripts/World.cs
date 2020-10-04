@@ -11,6 +11,7 @@ public class World : MonoBehaviour {
     public GameObject mainCamera;
     public float playerDistTillDeath = -5.0f;       // Distance from Camera (Off-Screen)
     public GameObject debugMenu;
+    public SceneTransitions sceneTransition;
 
     // External Settings
     public float distLevel0 = 0.0f;           // Depth Levels
@@ -66,6 +67,7 @@ public class World : MonoBehaviour {
         return distFromFloor;
     }
 
+    // Returns Reference to Player
     public GameObject getPlayer() {
         return this.player;
     }
@@ -98,12 +100,14 @@ public class World : MonoBehaviour {
         waterBackground.color = Color.Lerp(startingColor, finalColor, colorChangeDt * distFromFloor.y);
 
         // Check if Player is Off-Screen
-        // TODO: End Game
+        // End Game
         float playerToCameraDist = player.transform.position.y - mainCamera.transform.position.y;
         if (playerToCameraDist <= playerDistTillDeath) {
-            Debug.Log("DEATH!");
             player.GetComponent<CharacterStatus>().kill();
-            Debug.Break();
+            sceneTransition.ShowGameOver();
+
+            // Clean up
+            Destroy(gameObject);
         }
 
         // Randomly Spawn Bubbles

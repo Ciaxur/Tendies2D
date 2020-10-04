@@ -10,6 +10,11 @@ public class CameraFollow : MonoBehaviour {
 
     // Late Physics Update
     void LateUpdate() {
+        // Nothing to Follow
+        if (!followObj) {
+            return;
+        }
+        
         // Calculate the Desired Position of the Camera
         Vector3 desiredPosition = offset + new Vector3(
             transform.position.x,
