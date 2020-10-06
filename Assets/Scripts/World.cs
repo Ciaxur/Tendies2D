@@ -90,6 +90,14 @@ public class World : MonoBehaviour {
     
     // Last Minute Checks
     void LateUpdate() {
+        // Check if Player is dead
+        if (!player) {
+            // End Game & Clean up
+            sceneTransition.ShowGameOver();
+            Destroy(gameObject);
+            return;
+        }
+        
         // Despwan Off-Screen Objects
         Vector2 distFirst = platformHandler.getFistPlatform().transform.position - player.transform.position;
         if (distFirst.y < dyOffScreen)

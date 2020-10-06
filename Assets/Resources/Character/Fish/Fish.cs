@@ -15,6 +15,12 @@ public class Fish : MonoBehaviour
     }
 
     void FixedUpdate() {
+        // Early Return if Object is Destroyed
+        if (!relativeObject) {
+            Destroy(gameObject);
+            return;
+        }
+        
         float rangeFromDespawn = Vector2.Distance(
             transform.position,
             relativeObject.transform.position
