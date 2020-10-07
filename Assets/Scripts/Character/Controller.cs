@@ -13,7 +13,9 @@ public class Controller : MonoBehaviour {
     public int   floorLayer;
 
     // Internal References
-    private Rigidbody2D rbody2D;
+    Rigidbody2D rbody2D;
+    CharacterStatus stats;
+
 
     // Internal Key Presses
     private float   inputMoveX      = 0.0f;
@@ -27,6 +29,7 @@ public class Controller : MonoBehaviour {
 
     void Awake() {
         rbody2D = GetComponent<Rigidbody2D>();
+        stats = GetComponent<CharacterStatus>();
         charLayer = LayerMask.NameToLayer("Character");
         floorLayer = LayerMask.NameToLayer("Floor");
     }
@@ -45,7 +48,7 @@ public class Controller : MonoBehaviour {
         inputJump = false;
 
         // Limit Velocity
-        pVel.x = Mathf.Clamp(pVel.x, -maxVelocity, maxVelocity);
+        pVel.x = Mathf.Clamp(pVel.x, -maxVelocity * stats.getSpeedBuff(), maxVelocity * stats.getSpeedBuff());
         rbody2D.velocity = pVel;
 
         // Adjust Player Facing Direction
@@ -68,7 +71,7 @@ public class Controller : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // Update Sideways Movement
-        inputMoveX = Input.GetAxisRaw("Horizontal") * movementSpeed;
+        inputMoveX = Input.GetAxisRaw("Horizontal") * movementSpeed * stats.getSpeedBuff();
         
         // Update Vertical Movement
         if (!vertKeyDown && Input.GetAxisRaw("Vertical") > 0) {

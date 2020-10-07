@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     
     // Internal Settings
     private int characterLayer;
+    private int enemyLayer;
     
     void Start() {
         // Layers to Ignore
@@ -28,13 +29,14 @@ public class Bullet : MonoBehaviour
 
         // Character Layer to Collide with
         characterLayer = LayerMask.NameToLayer("Character");
+        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
     
     void OnCollisionEnter2D(Collision2D collision) {
         int collidedWith = collision.gameObject.layer;
         
-        // Character Hit!
-        if( collidedWith == characterLayer ) {
+        // Character / Enemy Hit!
+        if( collidedWith == characterLayer || collidedWith == enemyLayer ) {
             CharacterStatus otherStats = collision.gameObject.GetComponent<CharacterStatus>();
             if (!otherStats) {
                 Debug.Log($"Collided with Null!{collision.gameObject.name}");

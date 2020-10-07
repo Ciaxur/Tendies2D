@@ -6,8 +6,8 @@ public class PlatformSpawner : MonoBehaviour
 {
     // Public References
     public GameObject spawnPoint;
-    public GameObject powerup;
     public EnemySpawner enemySpawner;
+    public PowerUpSpawner powerUpSpawner;
 
     // Private Data
     public enum SpawnType { ENEMY, POWER_UP };
@@ -23,8 +23,9 @@ public class PlatformSpawner : MonoBehaviour
                 break;
                 
             case SpawnType.POWER_UP:
-                Debug.Log("Spawning Power Up!");
-                Instantiate(powerup, spawnPoint.transform.position, Quaternion.identity);
+                GameObject powerup = powerUpSpawner.getPowerUp();
+                powerup = Instantiate(powerup, spawnPoint.transform.position, Quaternion.identity);
+                powerup.transform.parent = transform;
                 break;
             default:
                 break;

@@ -47,6 +47,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.63
       objectReference: {fileID: 0}
+    - target: {fileID: 8367815726606923679, guid: aa319fb5f8123d5468a2cfe7e25e666d,
+        type: 3}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367815726606923679, guid: aa319fb5f8123d5468a2cfe7e25e666d,
+        type: 3}
+      propertyPath: maxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9206317582505198411, guid: aa319fb5f8123d5468a2cfe7e25e666d,
         type: 3}
       propertyPath: facingRight

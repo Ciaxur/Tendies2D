@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 4353018833518247568}
   - component: {fileID: 1942522031}
   - component: {fileID: 121144157}
+  - component: {fileID: -2330823947550270222}
   m_Layer: 8
   m_Name: Platform_Molten
   m_TagString: Platform
@@ -227,8 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 283271362}
-  powerup: {fileID: 0}
   enemySpawner: {fileID: 121144157}
+  powerUpSpawner: {fileID: -2330823947550270222}
 --- !u!114 &121144157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,4 +249,24 @@ MonoBehaviour:
   starPrefab: {fileID: 4861027249623552794, guid: b8f951eebd75a3f4486405102f3057a2,
     type: 3}
   zombiPrefab: {fileID: 5510543918234381898, guid: dd3de524e083d2d498bc96d083b475e7,
+    type: 3}
+--- !u!114 &-2330823947550270222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402892734106160610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669ff3cfc1526004789cf15e25a0be36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 163756587093415333, guid: 44091e728a7a45045ade4318e0501d0c,
+    type: 3}
+  defensePrefab: {fileID: 3886483354418078113, guid: e0c3bb8f6ba508b4887bdcaf80da0644,
+    type: 3}
+  speedPrefab: {fileID: 3473767745481752589, guid: f01d14e0bff8a0c4d98b82e1fb690217,
+    type: 3}
+  vibePrefab: {fileID: 2908111550777638149, guid: 408162a62a0f25f459dad00c78605edd,
     type: 3}

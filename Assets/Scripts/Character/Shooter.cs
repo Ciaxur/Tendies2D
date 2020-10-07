@@ -13,10 +13,12 @@ public class Shooter : MonoBehaviour
     Rigidbody2D rb;
     Vector2 mousePos;
     bool fireClicked = false;    
+    CharacterStatus stats;
 
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<CharacterStatus>();
     }
 
     void FixedUpdate() {
@@ -35,6 +37,9 @@ public class Shooter : MonoBehaviour
             Physics2D.IgnoreCollision(bulletRb.GetComponent<Collider2D>(), rb.GetComponent<Collider2D>());
             
             fireClicked = false;
+
+            // Apply Buffs
+            obj.GetComponent<Bullet>().damage *= stats.getDamageBuff();
         }
     }
 

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 669ff3cfc1526004789cf15e25a0be36
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - attackPrefab: {fileID: 163756587093415333, guid: 44091e728a7a45045ade4318e0501d0c,
+      type: 3}
+  - defensePrefab: {fileID: 3886483354418078113, guid: e0c3bb8f6ba508b4887bdcaf80da0644,
+      type: 3}
+  - speedPrefab: {fileID: 3473767745481752589, guid: f01d14e0bff8a0c4d98b82e1fb690217,
+      type: 3}
+  - vibePrefab: {fileID: 2908111550777638149, guid: 408162a62a0f25f459dad00c78605edd,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

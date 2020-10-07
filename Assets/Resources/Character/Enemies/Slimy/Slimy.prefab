@@ -23,6 +23,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1.3048239
       objectReference: {fileID: 0}
+    - target: {fileID: 7237956254737955052, guid: 81e6a80d666bb904e967cf5b1651e14b,
+        type: 3}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8039347394708114488, guid: 81e6a80d666bb904e967cf5b1651e14b,
         type: 3}
       propertyPath: facingRight

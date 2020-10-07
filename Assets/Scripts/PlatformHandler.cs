@@ -16,6 +16,7 @@ public class PlatformHandler : MonoBehaviour {
     public Vector2 minDist = new Vector2(0.0f, 2.0f);
     public float platformSpacing = 4.0f;
     [Range(0f, 1f)] public float enemySpawnRate = 0.2f;
+    [Range(0f, 1f)] public float powerupSpawnRate = 0.1f;
 
     // Internal Platform Resources
     private Queue<GameObject> platforms = new Queue<GameObject>();
@@ -73,9 +74,16 @@ public class PlatformHandler : MonoBehaviour {
         // Reset the Iteration Count
         spawnIterationCount = 0;
 
+
+        // SPAWN
         // Spawn Enemey
         if ( Random.Range( 0f, 1f ) < enemySpawnRate ) {
             obj.GetComponent<PlatformSpawner>().spawn(PlatformSpawner.SpawnType.ENEMY);
+        } 
+        
+        // Spawn Power Up
+        else if ( Random.Range( 0f, 1f ) < powerupSpawnRate ) {
+            obj.GetComponent<PlatformSpawner>().spawn(PlatformSpawner.SpawnType. POWER_UP);
         }
     }
 

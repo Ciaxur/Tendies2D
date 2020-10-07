@@ -24,8 +24,6 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public GameObject getEnemy() {
-        GameObject enemy = enemies[ Mathf.FloorToInt(Random.Range(0f, enemies.Count)) ];
-        Debug.Log(enemy);
-        return enemy;
+        return enemies[ Mathf.FloorToInt(Random.Range(0f, enemies.Count)) ];
     }
 }
