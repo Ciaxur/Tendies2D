@@ -50,7 +50,6 @@ public class CharacterStatus : MonoBehaviour {
         g.addScore(scorePoints);
         
         // Chance of Drop after Death
-        Debug.Log("Checking if Drop");
         if (gameObject.tag != "Player" && Random.Range(0f, 1f) < chanceOfDrop) {
             Instantiate(heartDrop, transform.position, Quaternion.identity);
         }

@@ -74,13 +74,13 @@ public class Controller : MonoBehaviour {
         inputMoveX = Input.GetAxisRaw("Horizontal") * movementSpeed * stats.getSpeedBuff();
         
         // Update Vertical Movement
-        if (!vertKeyDown && Input.GetAxisRaw("Vertical") > 0) {
+        if (!vertKeyDown && (Input.GetAxisRaw("Vertical") > 0 || Input.GetKeyDown(KeyCode.Space))) {
             Physics2D.IgnoreLayerCollision(charLayer, floorLayer);
             inputJump = true;
             vertKeyDown = true;
             fallCheck = false;
         }
-        else if (Input.GetAxisRaw("Vertical") == 0) {
+        else if (Input.GetAxisRaw("Vertical") == 0 || Input.GetKeyDown(KeyCode.Space) == false) {
             vertKeyDown = false;
         }
     }
