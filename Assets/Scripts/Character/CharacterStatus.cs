@@ -18,6 +18,10 @@ public class CharacterStatus : MonoBehaviour {
     // Public Settings
     public int maxHealth = 10;
     public int scorePoints = 10;    // Points on Death
+
+    // Drop Chance
+    public float chanceOfDrop = 0.01f;  // Enemies-Only
+    public GameObject heartDrop;
     
     // Public State
     public int health;              // Initial Character Health
@@ -44,6 +48,12 @@ public class CharacterStatus : MonoBehaviour {
         // Find the World & Increase Score
         World g = FindObjectOfType<World>();
         g.addScore(scorePoints);
+        
+        // Chance of Drop after Death
+        Debug.Log("Checking if Drop");
+        if (gameObject.tag != "Player" && Random.Range(0f, 1f) < chanceOfDrop) {
+            Instantiate(heartDrop, transform.position, Quaternion.identity);
+        }
         
         // Clean up
         Destroy(gameObject);

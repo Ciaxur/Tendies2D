@@ -223,6 +223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   scorePoints: 10
+  chanceOfDrop: 0.05
+  heartDrop: {fileID: 8839078948382403671, guid: 90d5be2e2adc52e4c945703ff1dec22b,
+    type: 3}
   health: 10
 --- !u!1001 &4941250655999784371
 PrefabInstance:

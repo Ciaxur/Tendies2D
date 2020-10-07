@@ -1042,6 +1042,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   scorePoints: 10
+  chanceOfDrop: 0.01
+  heartDrop: {fileID: 0}
   health: 0
 --- !u!1 &673787340
 GameObject:
