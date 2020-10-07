@@ -241,6 +241,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 7915924983983368808, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924983983368808, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 23.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924983983368808, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 28.301262
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924983983368808, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4.9001837
+      objectReference: {fileID: 0}
     - target: {fileID: 7915924983983368809, guid: 23bfbbdfbca235b479b80de1f2cd161e,
         type: 3}
       propertyPath: m_Layer
@@ -255,6 +275,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924984051712534, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1.3851833
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924984051712534, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -1.8764946
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915924984051712534, guid: 23bfbbdfbca235b479b80de1f2cd161e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7915924984051712535, guid: 23bfbbdfbca235b479b80de1f2cd161e,
         type: 3}
@@ -386,7 +421,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7429136415547352348, guid: 23bfbbdfbca235b479b80de1f2cd161e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23bfbbdfbca235b479b80de1f2cd161e, type: 3}
 --- !u!224 &2975149407623903797 stripped
 RectTransform:

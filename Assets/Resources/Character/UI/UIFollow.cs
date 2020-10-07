@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIFollow : MonoBehaviour
-{
+public class UIFollow : MonoBehaviour {
     // External References
     public GameObject followRef;
     public float followSmoothness = 0.5f;
 
     void Start() {
-        // Detach from Parent
         transform.SetParent(null);
         transform.position = followRef.transform.position;
     }

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Structures & Types
-struct PowerUpStat {
-    public PowerUp attack;
-    public PowerUp defense;
-    public PowerUp speed;
-    public PowerUp vibe;
-}
+
 
 public class CharacterStatus : MonoBehaviour {
+    // Structures & Types
+    struct PowerUpStat {
+        public PowerUp attack;
+        public PowerUp defense;
+        public PowerUp speed;
+        public PowerUp vibe;
+    }
+        
+    
     // Public Settings
     public int maxHealth = 10;
     public int scorePoints = 10;    // Points on Death
@@ -46,6 +49,7 @@ public class CharacterStatus : MonoBehaviour {
         Destroy(gameObject);
     }
     
+    // POWER UP INFORMATION
     // Returns the Damage Buff Value
     public int getDamageBuff() {
         return powerups.attack ? powerups.attack.buffAmount : 1;
@@ -55,6 +59,23 @@ public class CharacterStatus : MonoBehaviour {
     public int getSpeedBuff() {
         return powerups.speed ? powerups.speed.buffAmount : 1;
     }
+
+    // Returns the Stat of a Buff Type
+    public bool hasBuff(PowerUp.BUFF_TYPE type) {
+        switch(type) {
+            case PowerUp.BUFF_TYPE.ATTACK:
+                return powerups.attack;
+            case PowerUp.BUFF_TYPE.DEFENSE:
+                return powerups.defense;
+            case PowerUp.BUFF_TYPE.SPEED:
+                return powerups.speed;
+            case PowerUp.BUFF_TYPE.VIBE:
+                return powerups.vibe;
+            default:
+                return false;
+        }
+    }
+    
     
 
     // Inflicts Damage on Character
