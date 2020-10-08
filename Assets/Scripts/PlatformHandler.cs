@@ -52,10 +52,10 @@ public class PlatformHandler : MonoBehaviour {
         Vector2 floorDist = world.getDistFromFloor();
         GameObject platformPrefab = platform0;          // Level 0
 
-        if ( floorDist.y > world.distLevel1 ) {         // Level 1
-            platformPrefab = platform1;
-        } else if ( floorDist.y > world.distLevel2 ) {  // Level 2
+        if ( floorDist.y > world.distLevel2 ) {         // Level 2
             platformPrefab = platform2;
+        } else if ( floorDist.y > world.distLevel1 ) {  // Level 1
+            platformPrefab = platform1;
         }
 
 
