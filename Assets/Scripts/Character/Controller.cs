@@ -8,6 +8,10 @@ public class Controller : MonoBehaviour {
     public float maxVelocity = 10.0f;
     public float jumpForceMultiplier = 1.0f;
 
+    // Audio References
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
+
     // Layer Identification
     public int   charLayer;
     public int   floorLayer;
@@ -41,6 +45,7 @@ public class Controller : MonoBehaviour {
         Vector2 pVel = rbody2D.velocity;
         Vector2 playerForce = new Vector2(inputMoveX, 0.0f);
         if (inputJump && pVel.y == 0) {
+            audioSource.PlayOneShot(jumpSound);
             playerForce.y = jumpForceMultiplier * 1000.0f;
         }
         rbody2D.AddForce(playerForce);
