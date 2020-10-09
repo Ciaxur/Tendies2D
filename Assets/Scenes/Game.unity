@@ -1141,7 +1141,9 @@ MonoBehaviour:
   maxVelocity: 5
   jumpForceMultiplier: 1
   audioSource: {fileID: 337608873}
-  jumpSound: {fileID: 8300000, guid: 9aacaa1940e48494a8b0ecace2981dc4, type: 3}
+  jumpSound0: {fileID: 8300000, guid: ee47daefa0b54834d9a1298f218de847, type: 3}
+  jumpSound1: {fileID: 8300000, guid: 3203c27f956154048a91928b500d6a23, type: 3}
+  jumpSound2: {fileID: 8300000, guid: 9aacaa1940e48494a8b0ecace2981dc4, type: 3}
   charLayer: 0
   floorLayer: 0
 --- !u!114 &629514749

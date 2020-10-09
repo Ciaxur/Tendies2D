@@ -10,7 +10,9 @@ public class Controller : MonoBehaviour {
 
     // Audio References
     public AudioSource audioSource;
-    public AudioClip jumpSound;
+    public AudioClip jumpSound0;
+    public AudioClip jumpSound1;
+    public AudioClip jumpSound2;
 
     // Layer Identification
     public int   charLayer;
@@ -31,6 +33,22 @@ public class Controller : MonoBehaviour {
     private bool    fallCheck       = false;    // If Player is on Ground
 
 
+    void playJumpSound() {
+        float val = Random.Range(0f, 1f);
+        AudioClip audio = jumpSound0;
+        
+        // Choose from 3 Random Doinks! (BY Dana Naidas)
+        if (val < 0.33) {
+            audio = jumpSound1;
+        } else if (val < 0.66) {
+            audio = jumpSound2;
+        }
+
+        // Play Sound
+        audioSource.PlayOneShot(audio);
+    }
+
+
     void Awake() {
         rbody2D = GetComponent<Rigidbody2D>();
         stats = GetComponent<CharacterStatus>();
@@ -45,7 +63,7 @@ public class Controller : MonoBehaviour {
         Vector2 pVel = rbody2D.velocity;
         Vector2 playerForce = new Vector2(inputMoveX, 0.0f);
         if (inputJump && pVel.y == 0) {
-            audioSource.PlayOneShot(jumpSound);
+            playJumpSound();            
             playerForce.y = jumpForceMultiplier * 1000.0f;
         }
         rbody2D.AddForce(playerForce);
