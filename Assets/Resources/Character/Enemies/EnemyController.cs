@@ -7,7 +7,8 @@ public class EnemyController : MonoBehaviour
     // External Settings
     public float minShootDelay= 2f;     // 2 Game Seconds
     public float maxShootDelay= 5f;
-    public bool  facingRight = true;     // Facing Right
+    public bool  facingRight = true;    // Facing Right
+    public float shootStartDist = 10f;  // Distance from Player till Shooting Starts
 
     // Internal References
     GameObject player;
@@ -35,14 +36,17 @@ public class EnemyController : MonoBehaviour
     }
 
     void LateUpdate() {
-        // Calculate Time since last Shot
-        float dTime = Time.time - lastShotTime;
+        // Check if Enemy within Distance of Player
+        if (Vector2.Distance(transform.position, player.transform.position) <= shootStartDist) {
+            // Calculate Time since last Shot
+            float dTime = Time.time - lastShotTime;
 
-        // Determine to Shoot
-        float delayTime = Random.Range(minShootDelay, maxShootDelay);
-        if( dTime >= delayTime ) {
-            shooter.shootAt(player.transform.position);
-            lastShotTime = Time.time;
+            // Determine to Shoot
+            float delayTime = Random.Range(minShootDelay, maxShootDelay);
+            if (dTime >= delayTime) {
+                shooter.shootAt(player.transform.position);
+                lastShotTime = Time.time;
+            }
         }
     }
 }

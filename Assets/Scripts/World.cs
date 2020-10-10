@@ -15,11 +15,16 @@ public class World : MonoBehaviour {
     public SceneTransitions sceneTransition;
     public Text scoreUI;
     public Text gameOverScore;
+    public GameTimer gameTimer;
 
     // External Settings
     public float distLevel0 = 0.0f;           // Depth Levels
     public float distLevel1 = 100.0f;
     public float distLevel2 = 800.0f;
+
+    // Game Timer Settings
+    public float elevationThreshold = 10f;           // How much Elevation till Timer Increments
+    float lastIncrement = 0f;                        // Last Time incremented
 
     // Water Background
     public SpriteRenderer waterBackground;
@@ -75,11 +80,31 @@ public class World : MonoBehaviour {
         return this.player;
     }
 
+    // Ends the Game
+    public void gameOver() {
+        if(player) Destroy(player);
+        sceneTransition.ShowGameOver();
+        Destroy(gameObject);
+    }
 
     // Adds Score
     public void addScore(float val) {
         this.score += val;
     }
+
+    // Handles Timer Change
+    void handleTimer() {
+        // Difference in Elevation
+        float diff = player.transform.position.y - lastIncrement;
+    
+        // Increment time & Keep track of Previous
+        if (diff > elevationThreshold) {
+            lastIncrement = player.transform.position.y;
+            gameTimer.addToTime(GameTimer.TYPE.PROGESS);
+        }
+    }
+    
+    
 
     // Physics Fixed Updates
     void FixedUpdate() {
@@ -93,8 +118,7 @@ public class World : MonoBehaviour {
         // Check if Player is dead
         if (!player) {
             // End Game & Clean up
-            sceneTransition.ShowGameOver();
-            Destroy(gameObject);
+            this.gameOver();
             return;
         }
         
@@ -111,6 +135,9 @@ public class World : MonoBehaviour {
         // Calculate Score: Only Store the Highest
         distFromFloor = player.transform.position - environmentFloor.transform.position;
         score = distFromFloor.y > score ? distFromFloor.y : score;
+
+        // Increment Timer
+        this.handleTimer();
 
         // Change Background Color as Player Proceeds
         Color waterClr = waterBackground.color;
@@ -156,8 +183,9 @@ public class World : MonoBehaviour {
         for (int i = 0; i < 10; i++)
             platformHandler.runPlatformSpawns();
 
-        // Starting Score
+        // Starting Score & Increment
         score = 0.0f;
+        lastIncrement = player.transform.position.y;
 
         // Assign Background Color
         waterBackground.color = startingColor;

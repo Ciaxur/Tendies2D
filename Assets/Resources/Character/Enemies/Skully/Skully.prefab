@@ -62,15 +62,21 @@ PrefabInstance:
       propertyPath: facingRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9206317582505198412, guid: aa319fb5f8123d5468a2cfe7e25e666d,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 416814752570535908, guid: faccee9744ce8f3439fbed02815b53b8,
+        type: 3}
     - target: {fileID: 9206317582505198413, guid: aa319fb5f8123d5468a2cfe7e25e666d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.90072
+      value: 26.276695
       objectReference: {fileID: 0}
     - target: {fileID: 9206317582505198413, guid: aa319fb5f8123d5468a2cfe7e25e666d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.0904894
+      value: -7.267066
       objectReference: {fileID: 0}
     - target: {fileID: 9206317582505198413, guid: aa319fb5f8123d5468a2cfe7e25e666d,
         type: 3}

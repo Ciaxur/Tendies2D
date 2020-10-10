@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7237956254737955052}
   m_Layer: 11
   m_Name: EnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minShootDelay: 2
-  maxShootDelay: 5
+  maxShootDelay: 8
   facingRight: 1
+  shootStartDist: 12
 --- !u!114 &8039347394708114495
 MonoBehaviour:
   m_ObjectHideFlags: 0

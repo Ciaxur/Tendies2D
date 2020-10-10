@@ -47,7 +47,12 @@ public class CharacterStatus : MonoBehaviour {
     public void kill() {
         // Find the World & Increase Score
         World g = FindObjectOfType<World>();
-        g.addScore(scorePoints);
+
+        // Enemy Died, add Score & Time
+        if (gameObject.tag != "Player") {
+            g.addScore(scorePoints);
+            FindObjectOfType<GameTimer>().addToTime(GameTimer.TYPE.ENEMY_KILL);
+        }
         
         // Chance of Drop after Death
         if (gameObject.tag != "Player" && Random.Range(0f, 1f) < chanceOfDrop) {

@@ -64,7 +64,7 @@ public class Controller : MonoBehaviour {
         Vector2 playerForce = new Vector2(inputMoveX, 0.0f);
         if (inputJump && pVel.y == 0) {
             playJumpSound();            
-            playerForce.y = jumpForceMultiplier * 1000.0f;
+            playerForce.y = jumpForceMultiplier * 1000.0f * stats.getSpeedBuff();
         }
         rbody2D.AddForce(playerForce);
 
