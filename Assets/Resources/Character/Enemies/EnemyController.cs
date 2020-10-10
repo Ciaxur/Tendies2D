@@ -25,6 +25,12 @@ public class EnemyController : MonoBehaviour
     }
 
     void FixedUpdate() {
+        // Player Died?
+        if (!player) {
+            Destroy(this);      // Clean up
+            return;
+        }
+        
         // Face the Player
         float dir = player.transform.position.x - transform.position.x;
         Vector2 scale = transform.localScale;

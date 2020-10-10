@@ -11,6 +11,7 @@ public class GameTimer : MonoBehaviour
     // External References
     public Text timerText;
     public float initialTimer = 5f;
+    public bool timerStarted = false;
 
     // Time Increases
     public float timeOnProgress = 5f;
@@ -52,7 +53,9 @@ public class GameTimer : MonoBehaviour
 
     // Update the Time
     void Update() {
-        timer -= Time.deltaTime;
+        if (timerStarted) {
+            timer -= Time.deltaTime;
+        }
 
         // If the Timer hits zero, GAMEOVER!
         if (timer <= 0f) {

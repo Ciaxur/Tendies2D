@@ -14,7 +14,6 @@ public class World : MonoBehaviour {
     public GameObject debugMenu;
     public SceneTransitions sceneTransition;
     public Text scoreUI;
-    public Text gameOverScore;
     public GameTimer gameTimer;
 
     // External Settings
@@ -83,7 +82,7 @@ public class World : MonoBehaviour {
     // Ends the Game
     public void gameOver() {
         if(player) Destroy(player);
-        sceneTransition.ShowGameOver();
+        sceneTransition.ShowGameOver(Mathf.FloorToInt(score));
         Destroy(gameObject);
     }
 
@@ -94,6 +93,11 @@ public class World : MonoBehaviour {
 
     // Handles Timer Change
     void handleTimer() {
+        // Start Timer after Score 10
+        if (!gameTimer.timerStarted && score > 10f) {
+            gameTimer.timerStarted = true;
+        }
+        
         // Difference in Elevation
         float diff = player.transform.position.y - lastIncrement;
     
@@ -117,8 +121,7 @@ public class World : MonoBehaviour {
     void LateUpdate() {
         // Check if Player is dead
         if (!player) {
-            // End Game & Clean up
-            this.gameOver();
+            this.gameOver(); // End Game & Clean up
             return;
         }
         
@@ -148,7 +151,7 @@ public class World : MonoBehaviour {
         float playerToCameraDist = player.transform.position.y - mainCamera.transform.position.y;
         if (playerToCameraDist <= playerDistTillDeath) {
             player.GetComponent<CharacterStatus>().kill();
-            sceneTransition.ShowGameOver();
+            this.gameOver();
 
             // Clean up
             Destroy(gameObject);
@@ -160,7 +163,6 @@ public class World : MonoBehaviour {
 
         // DEBUG: Information
         scoreUI.text = $"Score: {score:N0}";
-        gameOverScore.text = $"Score: {score:N0}";
         
         debugMenu.GetComponent<TMPro.TextMeshProUGUI>().text =
             $"Last Platform: {distFirst.y:N2}\n" +
