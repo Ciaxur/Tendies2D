@@ -66,6 +66,12 @@ public class CharacterStatus : MonoBehaviour {
     // POWER UP INFORMATION
     // Returns the Damage Buff Value
     public int getDamageBuff() {
+        // Vibe Mode Supercedes
+        if (powerups.vibe) {
+            return powerups.vibe.buffAmount;
+        }
+        
+        // Regular Attack Buff
         return powerups.attack ? powerups.attack.buffAmount : 1;
     }
 

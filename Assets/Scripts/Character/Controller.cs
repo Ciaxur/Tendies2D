@@ -64,14 +64,15 @@ public class Controller : MonoBehaviour {
         Vector2 playerForce = new Vector2(inputMoveX, 0.0f);
         if (inputJump && pVel.y == 0) {
             playJumpSound();            
-            playerForce.y = jumpForceMultiplier * 1000.0f * stats.getSpeedBuff();
+            playerForce.y = jumpForceMultiplier * 1000.0f;
         }
         rbody2D.AddForce(playerForce);
 
         inputJump = false;
 
         // Limit Velocity
-        pVel.x = Mathf.Clamp(pVel.x, -maxVelocity * stats.getSpeedBuff(), maxVelocity * stats.getSpeedBuff());
+        float velBoost = Mathf.Clamp(stats.getSpeedBuff() * 0.8f, 1f, 1f + stats.getSpeedBuff());
+        pVel.x = Mathf.Clamp(pVel.x, -maxVelocity * stats.getSpeedBuff(), maxVelocity * velBoost);
         rbody2D.velocity = pVel;
 
         // Adjust Player Facing Direction

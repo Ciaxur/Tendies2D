@@ -14,7 +14,8 @@ public class PowerUp : MonoBehaviour
     public BUFF_TYPE type;
 
     // Private State
-    private bool isActive = false;
+    GameObject attatchedTo;         // Object Picked up By
+    bool isActive = false;
 
 
     void Start() {
@@ -35,9 +36,39 @@ public class PowerUp : MonoBehaviour
         if (isActive) {
             buffTimer -= Time.deltaTime;
             if (buffTimer < 0) {
+                // Deactivate State
+                if (type == BUFF_TYPE.VIBE) deactivateVibeMode();
+                
                 Destroy(gameObject);
             }
         }
+    }
+
+    // VIBE STATE
+    float originalJumpMultip;
+    void activateVibeMode() {
+        // Components
+        Controller controller = attatchedTo.GetComponent<Controller>();
+        PlayerSprite sprite = attatchedTo.GetComponent<PlayerSprite>();
+
+        // Get Previous Data
+        originalJumpMultip = controller.jumpForceMultiplier;
+
+        // Give Player Jump Boost
+        controller.jumpForceMultiplier *= buffAmount;
+
+        // Configure Aesthetics
+        sprite.setVibeMode();
+    }
+
+    void deactivateVibeMode() {
+        // Components
+        Controller controller = attatchedTo.GetComponent<Controller>();
+        PlayerSprite sprite = attatchedTo.GetComponent<PlayerSprite>();
+
+        // Restore Values
+        controller.jumpForceMultiplier = originalJumpMultip;
+        sprite.setDefault();
     }
 
     // Supply Power Up to Stats
@@ -51,6 +82,12 @@ public class PowerUp : MonoBehaviour
                     // Disable Everything
                     GetComponent<BoxCollider2D>().enabled = false;
                     GetComponent<SpriteRenderer>().enabled = false;
+
+                    // Attach Object
+                    attatchedTo = collision.gameObject;
+
+                    // Activate Vibe?
+                    if (type == BUFF_TYPE.VIBE) activateVibeMode();
 
                     isActive = true;
                 }
