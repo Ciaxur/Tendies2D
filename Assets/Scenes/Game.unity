@@ -2387,7 +2387,7 @@ MonoBehaviour:
   leftBoundaryX: -20
   rightBoundaryX: 16
   dyOffScreen: -20
-  dyLookAhead: 20
+  dyLookAhead: 50
   envSpawnRate: 0.0125
 --- !u!114 &1234536868
 MonoBehaviour:
@@ -2412,7 +2412,7 @@ MonoBehaviour:
   maxDist: {x: 5, y: 3}
   minDist: {x: 0, y: 1}
   platformSpacing: 4
-  enemySpawnRate: 0.2
+  enemySpawnRate: 0.25
   powerupSpawnRate: 0.1
 --- !u!114 &1234536869
 MonoBehaviour:
@@ -3265,7 +3265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followObj: {fileID: 629514745}
   offset: {x: 0, y: 5, z: 0}
-  smoothSpeed: 0.5
+  smoothSpeed: 1.8
 --- !u!114 &1774904046
 MonoBehaviour:
   m_ObjectHideFlags: 0

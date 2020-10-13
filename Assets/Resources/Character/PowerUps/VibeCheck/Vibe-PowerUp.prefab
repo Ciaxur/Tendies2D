@@ -73,6 +73,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c4b87db29f94f184f96a8a41eaa521cb,
         type: 3}
+    - target: {fileID: 3473767745481752587, guid: f01d14e0bff8a0c4d98b82e1fb690217,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3473767745481752588, guid: f01d14e0bff8a0c4d98b82e1fb690217,
         type: 3}
       propertyPath: m_Controller
@@ -81,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 3473767745481752589, guid: f01d14e0bff8a0c4d98b82e1fb690217,
         type: 3}
       propertyPath: m_Name
-      value: PowerUp
+      value: Vibe-PowerUp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01d14e0bff8a0c4d98b82e1fb690217, type: 3}

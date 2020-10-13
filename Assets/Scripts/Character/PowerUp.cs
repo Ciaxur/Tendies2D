@@ -35,9 +35,11 @@ public class PowerUp : MonoBehaviour
     void Update() {
         if (isActive) {
             buffTimer -= Time.deltaTime;
-            if (buffTimer < 0) {
+            if (buffTimer < 0f) {
                 // Deactivate State
-                if (type == BUFF_TYPE.VIBE) deactivateVibeMode();
+                if (type == BUFF_TYPE.VIBE) {
+                    deactivateVibeMode();
+                }
                 
                 Destroy(gameObject);
             }
@@ -87,7 +89,9 @@ public class PowerUp : MonoBehaviour
                     attatchedTo = collision.gameObject;
 
                     // Activate Vibe?
-                    if (type == BUFF_TYPE.VIBE) activateVibeMode();
+                    if (type == BUFF_TYPE.VIBE) {
+                        activateVibeMode();
+                    }
 
                     isActive = true;
                 }

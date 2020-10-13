@@ -181,8 +181,8 @@ public class World : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        // Spawn Initial 10 Platforms
-        for (int i = 0; i < 10; i++)
+        // Spawn Initial 30 Platforms
+        for (int i = 0; i < 30; i++)
             platformHandler.runPlatformSpawns();
 
         // Starting Score & Increment
