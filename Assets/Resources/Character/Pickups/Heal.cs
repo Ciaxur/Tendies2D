@@ -21,10 +21,10 @@ public class Heal : MonoBehaviour {
     }
 
     // Supply Power Up to Stats
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") {     // Only for Players
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Player") {     // Only for Players
             // Get the Stat of Player & Add Health
-            CharacterStatus stats = collision.gameObject.GetComponent<CharacterStatus>();
+            CharacterStatus stats = other.gameObject.GetComponent<CharacterStatus>();
             if(stats) {
                 stats.increaseHealth(healthAmount);
             }

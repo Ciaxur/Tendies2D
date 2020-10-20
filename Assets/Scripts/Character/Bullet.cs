@@ -32,14 +32,14 @@ public class Bullet : MonoBehaviour
         enemyLayer = LayerMask.NameToLayer("Enemy");
     }
     
-    void OnCollisionEnter2D(Collision2D collision) {
-        int collidedWith = collision.gameObject.layer;
+    void OnTriggerEnter2D(Collider2D other) {
+        int collidedWith = other.gameObject.layer;
         
         // Character / Enemy Hit!
         if( collidedWith == characterLayer || collidedWith == enemyLayer ) {
-            CharacterStatus otherStats = collision.gameObject.GetComponent<CharacterStatus>();
+            CharacterStatus otherStats = other.gameObject.GetComponent<CharacterStatus>();
             if (!otherStats) {
-                Debug.Log($"Collided with Null!{collision.gameObject.name}");
+                Debug.Log($"Collided with Null!{other.gameObject.name}");
                 Debug.Break();
             }
             otherStats.inflictDamage(damage);

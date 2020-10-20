@@ -13,14 +13,14 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    IEnumerator PlayCredits() {
+    IEnumerator CreditsAnimation() {
         creditsAnimation.SetTrigger("Run");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.5f);
     }
 
-    // Plays Credits then Exits
-    public void PlayExit() {
-        StartCoroutine(PlayCredits());
+    // Plays Credits
+    public void PlayCredits() {
+        StartCoroutine(CreditsAnimation());
     }
     
     // Actually Quits the Game

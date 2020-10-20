@@ -18,6 +18,7 @@ public class CharacterStatus : MonoBehaviour {
     // Public Settings
     public int maxHealth = 10;
     public int scorePoints = 10;    // Points on Death
+    public Color damageColor;       // Color for Inflicting Damage
 
     // Drop Chance
     public float chanceOfDrop = 0.01f;  // Enemies-Only
@@ -26,10 +27,10 @@ public class CharacterStatus : MonoBehaviour {
     // Public State
     public int health;              // Initial Character Health
 
-    // Private Power Up State
+    // Private State
     private PowerUpStat powerups = new PowerUpStat();
+    Color prevColor;                // Original Color State
 
-    
     
     void LateUpdate() {
         // Check if Player Died
@@ -40,6 +41,7 @@ public class CharacterStatus : MonoBehaviour {
 
     void Start() {
         health = maxHealth;
+        prevColor = GetComponent<SpriteRenderer>().color;
     }
 
 
@@ -96,10 +98,21 @@ public class CharacterStatus : MonoBehaviour {
         }
     }
     
-    
+
+    // Handles Infliction Animation on Player
+    IEnumerator inflictionAnimation() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
+        sprite.color = damageColor;
+        yield return new WaitForSecondsRealtime(0.1f);
+        sprite.color = prevColor;
+
+        StopCoroutine("inflictionAnimation");
+    }
 
     // Inflicts Damage on Character
     public void inflictDamage(int val) {
+        StartCoroutine(inflictionAnimation());
         health -= val / (powerups.defense ? powerups.defense.buffAmount : 1);
     }
 

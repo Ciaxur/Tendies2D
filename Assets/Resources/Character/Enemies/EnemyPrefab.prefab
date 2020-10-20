@@ -224,7 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   scorePoints: 10
-  chanceOfDrop: 0.05
+  damageColor: {r: 0, g: 0.43602183, b: 0.6603774, a: 1}
+  chanceOfDrop: 0.1
   heartDrop: {fileID: 8839078948382403671, guid: 90d5be2e2adc52e4c945703ff1dec22b,
     type: 3}
   health: 10

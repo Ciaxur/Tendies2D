@@ -22,6 +22,12 @@ public class EnemyController : MonoBehaviour
     void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
         shooter = GetComponent<EnemyShooter>();
+
+        // Ignore Player Collision
+        Physics2D.IgnoreLayerCollision(
+            LayerMask.NameToLayer("Character"), 
+            LayerMask.NameToLayer("Enemy")
+        );
     }
 
     void FixedUpdate() {

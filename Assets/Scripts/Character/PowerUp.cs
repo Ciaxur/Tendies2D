@@ -74,11 +74,11 @@ public class PowerUp : MonoBehaviour
     }
 
     // Supply Power Up to Stats
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") {     // Only for Players
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Player") {     // Only for Players
             // Get the Stat of Player
-            CharacterStatus stats = collision.gameObject.GetComponent<CharacterStatus>();
-            if(stats) {
+            CharacterStatus stats = other.gameObject.GetComponent<CharacterStatus>();
+            if (stats) {
                 // Apply the Power and Activate    
                 if (stats.applyPowerUp(this)) {
                     // Disable Everything
@@ -86,7 +86,7 @@ public class PowerUp : MonoBehaviour
                     GetComponent<SpriteRenderer>().enabled = false;
 
                     // Attach Object
-                    attatchedTo = collision.gameObject;
+                    attatchedTo = other.gameObject;
 
                     // Activate Vibe?
                     if (type == BUFF_TYPE.VIBE) {
