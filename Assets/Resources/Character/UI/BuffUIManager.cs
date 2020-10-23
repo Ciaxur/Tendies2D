@@ -48,14 +48,14 @@ public class BuffUIManager : MonoBehaviour
         if(!activeSlot3 && speedActive) {
             activeSlot3 = Instantiate(speedPrefab, slot3.transform.position, Quaternion.identity);
             activeSlot3.transform.parent = transform;
-        }else if (!attackActive && activeSlot3) {
+        }else if (!speedActive && activeSlot3) {
             Destroy(activeSlot3);
         }
 
         if(!activeSpecialSlot && vibeActive) {
             activeSpecialSlot = Instantiate(vibePrefab, specialSlot.transform.position, Quaternion.identity);
             activeSpecialSlot.transform.parent = transform;
-        }else if (!attackActive && activeSpecialSlot) {
+        }else if (!vibeActive && activeSpecialSlot) {
             Destroy(activeSpecialSlot);
         }
     }

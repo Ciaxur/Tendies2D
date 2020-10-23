@@ -79,7 +79,13 @@ public class CharacterStatus : MonoBehaviour {
 
     // Returns the Speed Buff Value
     public int getSpeedBuff() {
-        return powerups.speed ? powerups.speed.buffAmount : 1;
+        // Inital Speed Buff
+        int speedBuff = powerups.speed ? powerups.speed.buffAmount : 1;
+        
+        // Vibe Speed
+        speedBuff += powerups.vibe ? powerups.vibe.secondaryBuffAmount : 0;
+        
+        return speedBuff;
     }
 
     // Returns the Stat of a Buff Type

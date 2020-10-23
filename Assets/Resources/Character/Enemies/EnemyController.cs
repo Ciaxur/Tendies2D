@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     EnemyShooter shooter;
 
     // Internal State
-    float   lastShotTime = 0f;          // Last Time when Shot
+    float   lastShotTime = -1f;         // Last Time when Shot
     
     
     
@@ -50,8 +50,14 @@ public class EnemyController : MonoBehaviour
     void LateUpdate() {
         // Check if Enemy within Distance of Player
         if (Vector2.Distance(transform.position, player.transform.position) <= shootStartDist) {
+            // First Check within Range
+            if (lastShotTime == -1f) {
+                lastShotTime = Time.time;
+            }
+            
             // Calculate Time since last Shot
             float dTime = Time.time - lastShotTime;
+
 
             // Determine to Shoot
             float delayTime = Random.Range(minShootDelay, maxShootDelay);
@@ -59,6 +65,8 @@ public class EnemyController : MonoBehaviour
                 shooter.shootAt(player.transform.position);
                 lastShotTime = Time.time;
             }
+        } else {    // Far from Range
+            lastShotTime = -1f;
         }
     }
 }

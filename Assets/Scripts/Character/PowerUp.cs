@@ -10,6 +10,7 @@ public class PowerUp : MonoBehaviour
     
     // Public Settings of a Powerup
     public int buffAmount = 1;                          // Amount of Buff to Deal
+    public int secondaryBuffAmount = 1;                 // Optional Secondary Buff
     public float buffTimer = 5.0f;                      // How long will Buff Last
     public BUFF_TYPE type;
 
@@ -41,13 +42,29 @@ public class PowerUp : MonoBehaviour
                     deactivateVibeMode();
                 }
                 
+                // Wait to Clean Up
                 Destroy(gameObject);
             }
         }
     }
 
+    void FixedUpdate() {
+        if (type == BUFF_TYPE.VIBE) {
+            float currOrthoSize = Camera.main.orthographicSize;
+            float desiredOrthoSize = originalOrthoSize + 4f;
+            float dSmooth = 0.2f;
+
+            // Reverting Back
+            if (isActive && currOrthoSize < desiredOrthoSize) {
+                Camera.main.orthographicSize = Mathf.Lerp(currOrthoSize, desiredOrthoSize, dSmooth);
+            }
+        }
+
+    }
+
     // VIBE STATE
     float originalJumpMultip;
+    float originalOrthoSize;
     void activateVibeMode() {
         // Components
         Controller controller = attatchedTo.GetComponent<Controller>();
@@ -59,6 +76,9 @@ public class PowerUp : MonoBehaviour
         // Give Player Jump Boost
         controller.jumpForceMultiplier *= buffAmount;
 
+        // Store Camera Information
+        originalOrthoSize = Camera.main.orthographicSize;
+
         // Configure Aesthetics
         sprite.setVibeMode();
     }
@@ -69,6 +89,7 @@ public class PowerUp : MonoBehaviour
         PlayerSprite sprite = attatchedTo.GetComponent<PlayerSprite>();
 
         // Restore Values
+        Camera.main.orthographicSize = originalOrthoSize;
         controller.jumpForceMultiplier = originalJumpMultip;
         sprite.setDefault();
     }

@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c8f2db67a501a4f87a4e57f5f6da23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minShootDelay: 2
-  maxShootDelay: 8
+  minShootDelay: 1
+  maxShootDelay: 3
   facingRight: 1
   shootStartDist: 12
 --- !u!114 &8039347394708114495
