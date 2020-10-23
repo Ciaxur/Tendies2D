@@ -48,6 +48,9 @@ public class EnemyController : MonoBehaviour
     }
 
     void LateUpdate() {
+        // Early Return
+        if (!player) return;
+        
         // Check if Enemy within Distance of Player
         if (Vector2.Distance(transform.position, player.transform.position) <= shootStartDist) {
             // First Check within Range

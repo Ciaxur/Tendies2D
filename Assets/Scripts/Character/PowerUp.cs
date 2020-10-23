@@ -6,7 +6,6 @@ public class PowerUp : MonoBehaviour
 {
     // Types
     public enum BUFF_TYPE { ATTACK, SPEED, DEFENSE, VIBE };
-
     
     // Public Settings of a Powerup
     public int buffAmount = 1;                          // Amount of Buff to Deal
@@ -16,8 +15,10 @@ public class PowerUp : MonoBehaviour
 
     // Private State
     GameObject attatchedTo;         // Object Picked up By
+    World world;                    // The World
     bool isActive = false;
 
+    
 
     void Start() {
         // Ignore Enemies
@@ -30,9 +31,17 @@ public class PowerUp : MonoBehaviour
             LayerMask.NameToLayer("Pickups"), 
             LayerMask.NameToLayer("Default")
         );
+
+        // Obtain World
+        world = FindObjectOfType<World>();
+        if (!world) {
+            Debug.LogError("No World Object Found");
+            Debug.Break();
+        }
     }
 
     // Keep track of Being Alive
+    bool isCleanedUp = true;
     void Update() {
         if (isActive) {
             buffTimer -= Time.deltaTime;
@@ -42,8 +51,9 @@ public class PowerUp : MonoBehaviour
                     deactivateVibeMode();
                 }
                 
-                // Wait to Clean Up
-                Destroy(gameObject);
+                if (isCleanedUp) {
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -54,8 +64,18 @@ public class PowerUp : MonoBehaviour
             float desiredOrthoSize = originalOrthoSize + 4f;
             float dSmooth = 0.2f;
 
-            // Reverting Back
-            if (isActive && currOrthoSize < desiredOrthoSize) {
+            // Reverting Camera Back
+            if (!isCleanedUp) {
+                Camera.main.orthographicSize = Mathf.Lerp(currOrthoSize, originalOrthoSize, dSmooth);
+                if (Mathf.Round(currOrthoSize) <= originalOrthoSize) {
+                    Camera.main.orthographicSize = originalOrthoSize;
+                    isCleanedUp = true;
+                    Destroy(gameObject);
+                }
+            }
+
+            // Smooth Out Camera
+            else if (isActive && currOrthoSize < desiredOrthoSize) {
                 Camera.main.orthographicSize = Mathf.Lerp(currOrthoSize, desiredOrthoSize, dSmooth);
             }
         }
@@ -65,6 +85,7 @@ public class PowerUp : MonoBehaviour
     // VIBE STATE
     float originalJumpMultip;
     float originalOrthoSize;
+    float origDistTillDeath;
     void activateVibeMode() {
         // Components
         Controller controller = attatchedTo.GetComponent<Controller>();
@@ -79,6 +100,11 @@ public class PowerUp : MonoBehaviour
         // Store Camera Information
         originalOrthoSize = Camera.main.orthographicSize;
 
+        // Apply Distance till death mutliplier
+        origDistTillDeath = world.playerDistTillDeath;
+        float newDeathDist = origDistTillDeath * 2f;
+        world.playerDistTillDeath = newDeathDist;
+
         // Configure Aesthetics
         sprite.setVibeMode();
     }
@@ -89,9 +115,15 @@ public class PowerUp : MonoBehaviour
         PlayerSprite sprite = attatchedTo.GetComponent<PlayerSprite>();
 
         // Restore Values
-        Camera.main.orthographicSize = originalOrthoSize;
+        // Camera.main.orthographicSize = originalOrthoSize;
         controller.jumpForceMultiplier = originalJumpMultip;
         sprite.setDefault();
+
+        // Revert Distance till death mutliplier
+        world.playerDistTillDeath = origDistTillDeath;
+
+        // Still Need Cleaning up (Revert Camera)
+        isCleanedUp = false;
     }
 
     // Supply Power Up to Stats
