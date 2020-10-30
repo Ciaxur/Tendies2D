@@ -140,6 +140,8 @@ public class PowerUp : MonoBehaviour
 
                     // Attach Object
                     attatchedTo = other.gameObject;
+                    transform.parent = other.transform;
+                    
 
                     // Activate Vibe?
                     if (type == BUFF_TYPE.VIBE) {
