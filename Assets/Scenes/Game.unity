@@ -1240,6 +1240,8 @@ MonoBehaviour:
   firePoint: {fileID: 1529005064}
   bullet: {fileID: 5639972637479539935, guid: b71882087e87c4548ae914070fa7b125, type: 3}
   bulletSpeed: 10
+  audioSource: {fileID: 337608873}
+  shotSound: {fileID: 8300000, guid: b96281d553d05534f8df12ad32869dbb, type: 3}
 --- !u!114 &629514750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51ccf2a27c7b1f4da5900d5ba796d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 337608873}
+  damageSound: {fileID: 8300000, guid: 5ea9d9b761765ae448b0466c471f0b43, type: 3}
   maxHealth: 10
   scorePoints: 10
   damageColor: {r: 0.8117647, g: 0.23921569, b: 0.1882353, a: 1}

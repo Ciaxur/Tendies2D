@@ -13,6 +13,10 @@ public class CharacterStatus : MonoBehaviour {
         public PowerUp speed;
         public PowerUp vibe;
     }
+
+    // Audio References
+    public AudioSource audioSource;
+    public AudioClip damageSound;
         
     
     // Public Settings
@@ -42,6 +46,14 @@ public class CharacterStatus : MonoBehaviour {
     void Start() {
         health = maxHealth;
         prevColor = GetComponent<SpriteRenderer>().color;
+
+        // No Source, find it
+        if (!audioSource) {
+            AudioSource source = FindObjectOfType<AudioSource>();
+            if (source)
+                audioSource = source;
+        }
+        
     }
 
 
@@ -118,7 +130,13 @@ public class CharacterStatus : MonoBehaviour {
 
     // Inflicts Damage on Character
     public void inflictDamage(int val) {
+        // Play Animation
         StartCoroutine(inflictionAnimation());
+
+        // Play Sound
+        audioSource.PlayOneShot(damageSound);
+        
+        // Decrease Health
         health -= val / (powerups.defense ? powerups.defense.buffAmount : 1);
     }
 

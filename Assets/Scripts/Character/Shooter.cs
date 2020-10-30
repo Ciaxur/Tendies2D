@@ -9,6 +9,10 @@ public class Shooter : MonoBehaviour
     public GameObject bullet;
     public float bulletSpeed = 10f;
 
+    // Audio References
+    public AudioSource audioSource;
+    public AudioClip shotSound;
+
     // Internal States
     Rigidbody2D rb;
     Vector2 mousePos;
@@ -23,6 +27,9 @@ public class Shooter : MonoBehaviour
 
     void FixedUpdate() {
         if (fireClicked) {
+            // Play Sound
+            audioSource.PlayOneShot(shotSound);
+            
             // Rotate FirePoint in Direction of Mouse
             Vector2 lookDirection = mousePos - rb.position;
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;

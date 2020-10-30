@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51ccf2a27c7b1f4da5900d5ba796d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 5ea9d9b761765ae448b0466c471f0b43, type: 3}
   maxHealth: 10
   scorePoints: 10
   damageColor: {r: 0, g: 0.43602183, b: 0.6603774, a: 1}
