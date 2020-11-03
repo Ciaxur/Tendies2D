@@ -33,7 +33,7 @@ public class World : MonoBehaviour {
 
     // Floor & Resources
     public GameObject environmentFloor;
-    private float score;
+    public float score;
 
     // Environment Boundaries
     public float leftBoundaryX = -10.0f;

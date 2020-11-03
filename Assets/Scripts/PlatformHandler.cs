@@ -50,12 +50,14 @@ public class PlatformHandler : MonoBehaviour {
 
         // Depending on the Distance from Floor Pick a Platform Level
         Vector2 floorDist = world.getDistFromFloor();
-        GameObject platformPrefab = platform0;          // Level 0
+        GameObject  platformPrefab;
 
-        if ( floorDist.y > world.distLevel2 ) {         // Level 2
+        if ( world.score > world.distLevel2 ) {         // Level 2
             platformPrefab = platform2;
-        } else if ( floorDist.y > world.distLevel1 ) {  // Level 1
+        } else if ( world.score > world.distLevel1 ) {  // Level 1
             platformPrefab = platform1;
+        } else {
+            platformPrefab = platform0;                 // Level 0
         }
 
 
